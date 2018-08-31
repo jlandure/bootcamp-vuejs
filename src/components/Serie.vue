@@ -1,43 +1,56 @@
 <template>
     <div>
-    <article v-for="serie in series" v-bind:key="serie.id" class="media">
+    <article class="media">
         <figure class="media-left">
             <p class="image is-64x64">
-                <img v-if="serie.image" v-bind:src="serie.image.medium">
+                <img v-if="serieData.image" v-bind:src="serieData.image.medium">
             </p>
         </figure>
         <div class="media-content">
             <div class="content">
-    <strong>{{serie.name}}</strong>&nbsp;&nbsp;
-    <small v-if="serie.network">{{serie.network.name}}</small>&nbsp;&nbsp;
-    <!-- <small>{{serie.numberOfEpisodes}} episodes</small> --> -->
+                <strong>{{serieData.name}}</strong>&nbsp;&nbsp;
+                <small v-if="serieData.network">{{serieData.network.name}}</small>&nbsp;&nbsp;
+                <!-- <small>{{serie.numberOfEpisodes}} episodes</small> -->
                 <br>
-                <span v-html="serie.summary" />
+                <span v-html="serieData.summary" />
             </div>
         </div>
         <div class="media-right">
-            <span class="icon is-small"><i class="fas fa-heart"></i></span>
+            <span class="icon is-small" @click="changeFavorite"><i class="fas fa-heart" :class="[isFav ? 'red' : 'grey']"></i></span>
         </div>
     </article>
     </div>
 </template>
 
 <script>
-import logo from "@/assets/logo.png";
-import api from "@/services/api";
+import favoritesService from "@/services/favorites.service";
+
 export default {
   data() {
-    return {
-      series: []
-    };
+    return { favoritesService };
   },
-  async mounted() {
-    const items = await api.getSeries();
-    this.series = items.map(item => item.show);
-    console.log(this.series);
+  props: {
+    serieData: Object,
+    isFavorite: Function
+  },
+  methods: {
+    changeFavorite() {
+      this.$emit("changeFavorite", this.serieData);
+    }
+  },
+  computed: {
+    isFav() {
+      return this.favoritesService.isFavorite(this.serieData);
+    }
   }
 };
 </script>
 
-<style>
+<style scoped>
+.red {
+  color: red;
+}
+.grey {
+  color: grey;
+}
 </style>

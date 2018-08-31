@@ -1,40 +1,33 @@
 <template>
     <div>
-        <h1>Hello Zenika Nantes!</h1>
-        <span>{{msg}}</span>
-        <serie class="serie" @changeFavorite="changeFavorite" :serieData="serie" v-for="serie in series" v-bind:key="serie.id" />
+        <h1>Hello my favorites!</h1>
+        <serie @changeFavorite="changeFavorite" class="serie" :serieData="serie" v-for="serie in series" v-bind:key="serie.id" />
 
     </div>
 </template>
 
 <script>
+// @ is an alias to /src
 import Serie from "@/components/Serie.vue";
-import api from "@/services/api";
 import favoritesService from "@/services/favorites.service";
 
 export default {
-  name: "Bootcamp",
+  name: "home",
   data() {
     return {
       series: []
     };
   },
-  props: {
-    msg: String
-  },
   components: {
     Serie
+  },
+  mounted() {
+    this.series = favoritesService.getFavorites();
   },
   methods: {
     changeFavorite(serie) {
       favoritesService.changeFavorite(serie);
     }
-  },
-
-  async mounted() {
-    const items = await api.getSeries();
-    this.series = items.map(item => item.show);
-    console.log(this.series);
   }
 };
 </script>

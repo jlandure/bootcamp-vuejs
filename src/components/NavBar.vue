@@ -21,9 +21,9 @@
         <router-link class="navbar-item" to="/">Home</router-link>
         <router-link class="navbar-item" to="/favorites">Favorites</router-link>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="/documentation/overview/start/">
+          <span class="navbar-link">
             Others
-          </a>
+          </span>
           <div class="navbar-dropdown is-boxed">
             <router-link class="navbar-item" to="/about">About</router-link>
             <a class="navbar-item" href="https://bulma.io/documentation/" target="_blank">
@@ -57,7 +57,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #nav {
   padding: 30px;
 }
