@@ -2,7 +2,20 @@
     <div>
         <h1>Hello Zenika Nantes!</h1>
         <span>{{msg}}</span>
-        <serie class="serie" @changeFavorite="changeFavorite" :serieData="serie" v-for="serie in series" v-bind:key="serie.id" />
+
+        <br>
+        <div class="field">
+          <div class="control">
+              <input class="input" v-model="searchText" type="text" placeholder="Find a serie">
+            </div>
+            <div class="control">
+              <a class="button is-info">
+                Search
+              </a>
+          </div>
+        </div>
+        <br>
+        <serie class="serie" @changeFavorite="changeFavorite" :serieData="serie" v-for="serie in getSeries" v-bind:key="serie.id" />
 
     </div>
 </template>
@@ -16,7 +29,8 @@ export default {
   name: "Bootcamp",
   data() {
     return {
-      series: []
+      series: [],
+      searchText: ""
     };
   },
   props: {
@@ -30,7 +44,15 @@ export default {
       favoritesService.changeFavorite(serie);
     }
   },
-
+  computed: {
+    getSeries() {
+      if (!this.searchText) return this.series;
+      return this.series.filter(
+        item =>
+          item.name.toLowerCase().indexOf(this.searchText.toLowerCase()) !== -1
+      );
+    }
+  },
   async mounted() {
     const items = await api.getSeries();
     this.series = items.map(item => item.show);
