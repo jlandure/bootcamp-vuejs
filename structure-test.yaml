@@ -1,0 +1,28 @@
+schemaVersion: 2.0.0
+
+commandTests:
+  - name: "Check Alpine Version"
+    command: "cat"
+    args: ["/etc/alpine-release"]
+    expectedOutput: ["3.9.4"]
+# fileExistenceTests:
+#   - name: "Nginx is here"
+#     path: "/etc/nginx/nginx.conf"
+#     shouldExist: true
+#   - name: "Favicon is here"
+#     path: "/usr/share/nginx/html/favicon.ico"
+#     shouldExist: true
+
+# fileContentTests:
+#   - name: "Check HTML"
+#     path: "/usr/share/nginx/html/index.html"
+#     expectedContents: [".*favicon.ico.*"]
+#     excludedContents: [".*localhost.*"]
+
+# metadataTest:
+#   env:
+#     - key: NGINX_VERSION
+#       value: 1.17.0
+#   exposedPorts: ["80"]
+#   cmd: ["nginx", "-g", "daemon off;"]
+#   workdir: ""
