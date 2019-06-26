@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>Welcome on TV Manager</h1>
-    <h2>{{`${title} 🚀 nb series: ${series.length}`}}</h2>
+    <h1>Hello SunnyTech</h1>
+    <h2>Welcome on TV Manager</h2>
+    <h3>{{`${title} 🚀 nb series: ${series.length}`}}</h3>
     <serie
       v-for="serie in series"
       v-bind:key="serie.id"
