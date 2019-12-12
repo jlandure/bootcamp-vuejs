@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Hello SunnyTech</h1>
+    <h1>Hello World from Singapore!!</h1>
     <h2>Welcome on TV Manager</h2>
     <h3>{{`${title} 🚀 nb series: ${series.length}`}}</h3>
     <serie
