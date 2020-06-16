@@ -4,7 +4,7 @@ commandTests:
   - name: "Check Alpine Version"
     command: "cat"
     args: ["/etc/alpine-release"]
-    expectedOutput: ["3.9.4"]
+    expectedOutput: ["3.11.6"]
 # fileExistenceTests:
 #   - name: "Nginx is here"
 #     path: "/etc/nginx/nginx.conf"
@@ -22,7 +22,6 @@ commandTests:
 # metadataTest:
 #   env:
 #     - key: NGINX_VERSION
-#       value: 1.17.0
+#       value: 1.19.0
 #   exposedPorts: ["80"]
-#   cmd: ["nginx", "-g", "daemon off;"]
 #   workdir: ""
