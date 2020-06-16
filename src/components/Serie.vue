@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>{{name}}</h3>
-    <img v-bind:src="image.medium">
+    <img v-if="image" v-bind:src="image.medium" />
     <!-- <section>{{summary}}</section> -->
   </div>
 </template>
